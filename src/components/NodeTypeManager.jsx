@@ -157,7 +157,7 @@ const NodeTypeManager = () => {
                           }`}
                           title={nodeTypeUsage[key] ? '该类型已有节点，无法删除' : '删除类型'}
                         >
-                          🗑️
+                          ❌
                         </button>
                     </div>
                   </div>

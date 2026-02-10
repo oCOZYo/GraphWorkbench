@@ -37,202 +37,301 @@ const Sidebar = () => {
   } = useGraphContext()
 
   return (
-  <aside
-    className={`bg-white border-r border-slate-200 flex flex-col shadow-xl z-20 overflow-hidden transition-all duration-300 ${
-      isSidebarCollapsed ? 'w-12' : 'w-80'
-    }`}
-  >
-    <div className={`border-b bg-slate-50/50 ${isSidebarCollapsed ? 'p-2' : 'p-6 text-center'}`}>
-      <div className={`flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'}`}>
-        {!isSidebarCollapsed && (
-          <div>
-            <h1 className="text-xl font-black text-slate-800 tracking-tight">异构图建模 Pro</h1>
-            <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Workbench v3.3.1</p>
-          </div>
-        )}
-        <button
-          onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-          className="w-8 h-8 rounded-lg bg-white border text-slate-600 text-xs font-bold shadow-sm"
-          title={isSidebarCollapsed ? '展开侧边栏' : '收起侧边栏'}
-        >
-          {isSidebarCollapsed ? '⟫' : '⟪'}
-        </button>
+    <aside
+      className={`bg-slate-50/90 border-r border-slate-100 flex flex-col shadow-xl z-20 overflow-hidden transition-all duration-300 ${
+        isSidebarCollapsed ? 'w-12' : 'w-80'
+      }`}
+    >
+      <div className={`bg-slate-50/90 ${isSidebarCollapsed ? 'p-2' : 'px-4 py-5'}`}>
+        <div className={`flex items-center ${isSidebarCollapsed ? 'justify-start' : 'justify-between'}`}>
+          <button
+            onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+            className="w-9 h-9 rounded-lg bg-slate-100 text-slate-500 text-sm font-bold shadow-sm hover:bg-slate-200"
+            title={isSidebarCollapsed ? '展开侧边栏' : '收起侧边栏'}
+          >
+            ☰
+          </button>
+          {!isSidebarCollapsed && (
+            <div className="text-right">
+              <h1 className="text-lg font-black text-slate-800 tracking-tight">异构图建模工具</h1>
+              <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Workbench v3.3.1</p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
 
-    {!isSidebarCollapsed && (
-      <div className="px-6 space-y-6 flex-1 pb-10 mt-6 overflow-y-auto">
+      <div
+        className={`flex-1 overflow-y-auto transition-all duration-300 ${
+          isSidebarCollapsed ? 'px-2 pt-4 space-y-3' : 'px-6 mt-6 pb-5 space-y-6'
+        }`}
+      >
         <section>
-          <h3 className="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter">交互工具</h3>
-          <div className="grid grid-cols-1 gap-2">
+          <h3
+            className={`text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter transition-all ${
+              isSidebarCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'
+            }`}
+          >
+            交互工具
+          </h3>
+          <div className="grid gap-2">
             <button
               onClick={() => {
                 setIsQuickLinkMode(!isQuickLinkMode)
                 setLinkSource(null)
               }}
-              className={`w-full py-3 rounded-xl text-xs font-bold transition-all shadow-sm ${
-                isQuickLinkMode ? 'bg-blue-600 text-white shadow-blue-100' : 'bg-slate-100 text-slate-600'
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              } ${
+                isQuickLinkMode ? 'bg-blue-600 text-white shadow-blue-100' : 'bg-white text-slate-600 border border-slate-200'
               }`}
             >
-              {isQuickLinkMode ? '✨ 连线模式: 开启' : '🔗 连线模式: 关闭'}
+              <span className="text-base">🖱️</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                连线模式: {isQuickLinkMode ? '开启' : '关闭'}
+              </span>
             </button>
             <button
               onClick={aggregateNodes}
-              className="w-full py-3 rounded-xl text-xs font-bold bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-sm"
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-indigo-50 text-indigo-600 border border-indigo-100 ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              }`}
             >
-              🧩 疏朗布局一键聚合
+              <span className="text-base">🔄</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                一键自动布局
+              </span>
             </button>
             <button
               onClick={() => setAutoLayoutEnabled(!autoLayoutEnabled)}
-              className={`w-full py-3 rounded-xl text-xs font-bold transition-all shadow-sm border ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm border flex items-center ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              } ${
                 autoLayoutEnabled
-                  ? 'bg-slate-900 text-white border-slate-900'
+                  ? 'bg-indigo-600 text-white border-indigo-600'
                   : 'bg-white text-slate-600 border-slate-200'
               }`}
             >
-              {autoLayoutEnabled ? '🧲 自动布局: 开启' : '🧭 自动布局: 关闭'}
+              <span className="text-base">🧲</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                自动布局: {autoLayoutEnabled ? '开启' : '关闭'}
+              </span>
             </button>
           </div>
         </section>
 
         <section>
-          <h3 className="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter">单保司视角</h3>
-          <div className="space-y-2">
-            <button
-              onClick={() => {
-                const next = !singleInsurerMode
-                setSingleInsurerMode(next)
-                if (next && !activeInsurerId && insurerIds.length > 0) setActiveInsurerId(insurerIds[0])
-              }}
-              className={`w-full py-3 rounded-xl text-xs font-bold transition-all shadow-sm ${
-                singleInsurerMode ? 'bg-emerald-600 text-white shadow-emerald-100' : 'bg-slate-100 text-slate-600'
-              }`}
-            >
-              {singleInsurerMode ? '👁️ 单保司模式: 开启' : '👁️ 单保司模式: 关闭'}
-            </button>
-            <select
-              className="w-full text-xs p-2.5 rounded-lg border bg-white"
-              value={activeInsurerId}
-              onChange={(e) => setActiveInsurerId(e.target.value)}
-              disabled={!singleInsurerMode || insurerIds.length === 0}
-            >
-              <option value="">请选择保司</option>
-              {insurerNodes.map((insurer) => (
-                <option key={insurer.id} value={insurer.id}>
-                  {insurer.label}
-                </option>
-              ))}
-            </select>
-            <label className="flex items-center gap-2 text-xs text-slate-600">
-              <input
-                type="checkbox"
-                checked={visibilityMode === 'hide'}
-                onChange={(e) => setVisibilityMode(e.target.checked ? 'hide' : 'dim')}
-                disabled={!singleInsurerMode}
-              />
-              <span>不可见节点隐藏（不参与布局）</span>
-            </label>
-            {insurerIds.length === 0 && <p className="text-[10px] text-slate-400">暂无保司节点，无法启用视角筛选。</p>}
-          </div>
-        </section>
-
-        <section>
-          <h3 className="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter">模型定义</h3>
-          <div className="grid grid-cols-1 gap-2">
+          <h3
+            className={`text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter transition-all ${
+              isSidebarCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'
+            }`}
+          >
+            模型定义
+          </h3>
+          <div className="grid gap-2">
             <button
               onClick={() => setShowNodeTypeManager(true)}
-              className="w-full py-3 rounded-xl text-xs font-bold bg-slate-800 text-white shadow-md"
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-700 text-white ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              }`}
             >
-              🧩 实体类型配置
+              <span className="text-base">🗂️</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                实体管理
+              </span>
             </button>
             <button
               onClick={() => setShowTypeManager(true)}
-              className="w-full py-3 rounded-xl text-xs font-bold bg-slate-800 text-white shadow-md"
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-700 text-white ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              }`}
             >
-              🎨 关系配色与类型管理
+              <span className="text-base">🔗</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                关系管理
+              </span>
             </button>
             <button
               onClick={() => setShowColorPaletteManager(true)}
-              className="w-full py-3 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200"
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-700 text-white ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              }`}
             >
-              🧪 色卡管理
+              <span className="text-base">🎨</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                色卡管理
+              </span>
             </button>
           </div>
         </section>
 
         <section>
-          <h3 className="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter">录入实体</h3>
-          <div className="space-y-3 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-            <input
-              className="w-full text-xs p-2.5 rounded-lg border focus:ring-2 focus:ring-blue-500 outline-none"
-              placeholder="显示名称"
-              value={newNode.label}
-              onBlur={handleLabelBlur}
-              onChange={(e) => setNewNode({ ...newNode, label: e.target.value })}
-            />
-            <input
-              className="w-full text-xs p-2.5 rounded-lg border bg-white"
-              placeholder="ID"
-              value={newNode.id}
-              onChange={(e) => setNewNode({ ...newNode, id: e.target.value })}
-            />
-            <select
-              className="w-full text-xs p-2.5 rounded-lg border bg-white"
-              value={newNode.type}
-              onChange={(e) => handleNewNodeTypeChange(e.target.value)}
-            >
-              {Object.entries(nodeTypeConfigs).map(([k, v]) => (
-                <option key={k} value={k}>
-                  {v.label}
-                </option>
-              ))}
-            </select>
+          <h3
+            className={`text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter transition-all ${
+              isSidebarCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'
+            }`}
+          >
+            导入导出
+          </h3>
+          <div className="grid gap-2">
             <button
-              onClick={addNode}
-              className="w-full bg-slate-800 text-white text-xs font-bold py-2.5 rounded-lg active:scale-95 transition-all"
+              onClick={exportData}
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-emerald-600 text-white ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              }`}
             >
-              添加节点
+              <span className="text-base">💾</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                导出数据包
+              </span>
             </button>
+            <button
+              onClick={exportNeo4j}
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-emerald-50 text-emerald-700 border border-emerald-100 ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              }`}
+            >
+              <span className="text-base">🧱</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                导出 Neo4j JSON
+              </span>
+            </button>
+            <button
+              onClick={() => fileInputRef.current.click()}
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-900 text-white ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              }`}
+            >
+              <span className="text-base">📂</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                导入数据包
+              </span>
+            </button>
+            <button
+              onClick={() => neo4jFileInputRef.current.click()}
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-white text-slate-700 border border-slate-200 ${
+                isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
+              }`}
+            >
+              <span className="text-base">📦</span>
+              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+                导入 Neo4j JSON
+              </span>
+            </button>
+            <input type="file" ref={fileInputRef} onChange={handleImport} className="hidden" accept=".json" />
+            <input
+              type="file"
+              ref={neo4jFileInputRef}
+              onChange={handleNeo4jImport}
+              className="hidden"
+              accept=".json"
+            />
           </div>
         </section>
 
-        <section className="pt-4 border-t border-slate-100 grid grid-cols-1 gap-2">
-          <button
-            onClick={exportData}
-            className="w-full bg-emerald-600 text-white text-xs font-bold py-3 rounded-xl shadow-lg shadow-emerald-100"
-          >
-            💾 导出数据包
-          </button>
-          <button
-            onClick={exportNeo4j}
-            className="w-full bg-emerald-50 text-emerald-700 text-xs font-bold py-3 rounded-xl border border-emerald-100"
-          >
-            🧱 导出 Neo4j JSON
-          </button>
-          <button
-            onClick={() => fileInputRef.current.click()}
-            className="w-full bg-slate-700 text-white text-xs font-bold py-3 rounded-xl"
-          >
-            📂 导入数据包
-          </button>
-          <button
-            onClick={() => neo4jFileInputRef.current.click()}
-            className="w-full bg-slate-50 text-slate-700 text-xs font-bold py-3 rounded-xl border border-slate-200"
-          >
-            📦 导入 Neo4j JSON
-          </button>
-          <input type="file" ref={fileInputRef} onChange={handleImport} className="hidden" accept=".json" />
-          <input
-            type="file"
-            ref={neo4jFileInputRef}
-            onChange={handleNeo4jImport}
-            className="hidden"
-            accept=".json"
-          />
-        </section>
+        {!isSidebarCollapsed && (
+          <>
+            <details className="group">
+              <summary className="list-none cursor-pointer text-[10px] font-black text-slate-400 uppercase tracking-tighter flex items-center justify-between">
+                <span>单保司视角</span>
+                <span className="text-[11px] text-slate-300 group-open:rotate-180 transition">▾</span>
+              </summary>
+              <div className="space-y-2 mt-3">
+                <button
+                  onClick={() => {
+                    const next = !singleInsurerMode
+                    setSingleInsurerMode(next)
+                    if (next && !activeInsurerId && insurerIds.length > 0) setActiveInsurerId(insurerIds[0])
+                  }}
+                  className={`w-full py-3 rounded-xl text-xs font-bold transition-all shadow-sm ${
+                    singleInsurerMode ? 'bg-emerald-600 text-white shadow-emerald-100' : 'bg-white text-slate-600 border border-slate-200'
+                  }`}
+                >
+                  {singleInsurerMode ? '单保司模式: 开启' : '单保司模式: 关闭'}
+                </button>
+                <select
+                  className="w-full text-xs p-2.5 rounded-lg border bg-white"
+                  value={activeInsurerId}
+                  onChange={(e) => setActiveInsurerId(e.target.value)}
+                  disabled={!singleInsurerMode || insurerIds.length === 0}
+                >
+                  <option value="">请选择保司</option>
+                  {insurerNodes.map((insurer) => (
+                    <option key={insurer.id} value={insurer.id}>
+                      {insurer.label}
+                    </option>
+                  ))}
+                </select>
+                <label className="flex items-center gap-2 text-xs text-slate-600">
+                  <input
+                    type="checkbox"
+                    checked={visibilityMode === 'hide'}
+                    onChange={(e) => setVisibilityMode(e.target.checked ? 'hide' : 'dim')}
+                    disabled={!singleInsurerMode}
+                  />
+                  <span>不可见节点隐藏（不参与布局）</span>
+                </label>
+                {insurerIds.length === 0 && <p className="text-[10px] text-slate-400">暂无保司节点，无法启用视角筛选。</p>}
+              </div>
+            </details>
+
+            <section>
+              <h3 className="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter">录入实体</h3>
+              <div className="space-y-3 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                <input
+                  className="w-full text-xs p-2.5 rounded-lg border focus:ring-2 focus:ring-blue-500 outline-none"
+                  placeholder="显示名称"
+                  value={newNode.label}
+                  onBlur={handleLabelBlur}
+                  onChange={(e) => setNewNode({ ...newNode, label: e.target.value })}
+                />
+                <input
+                  className="w-full text-xs p-2.5 rounded-lg border bg-white"
+                  placeholder="ID"
+                  value={newNode.id}
+                  onChange={(e) => setNewNode({ ...newNode, id: e.target.value })}
+                />
+                <select
+                  className="w-full text-xs p-2.5 rounded-lg border bg-white"
+                  value={newNode.type}
+                  onChange={(e) => handleNewNodeTypeChange(e.target.value)}
+                >
+                  {Object.entries(nodeTypeConfigs).map(([k, v]) => (
+                    <option key={k} value={k}>
+                      {v.label}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  onClick={addNode}
+                  className="w-full bg-slate-900 text-white text-xs font-bold py-2.5 rounded-lg active:scale-95 transition-all"
+                >
+                  添加节点
+                </button>
+              </div>
+            </section>
+
+            <section className="pt-2 border-t border-slate-100">
+              <div className="rounded-2xl bg-slate-50 border-slate-100 p-0 text-[11px] text-slate-500 space-y-2">
+                <a
+                  href="https://github.com/oCOZYo/GraphWorkbench"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center"
+                  aria-label="GitHub: GraphWorkbench"
+                >
+                  <img
+                    src="/GitHub_Lockup_Black_Clearspace.svg"
+                    alt="GitHub"
+                    className="h-8"
+                  />
+                </a>
+                <p>欢迎提交 Issue / PR 或分享你的业务图谱实践。</p> 
+              </div>
+            </section>
+          </>
+        )}
       </div>
-    )}
-  </aside>
+    </aside>
   )
 }
 

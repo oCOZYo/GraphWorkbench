@@ -156,7 +156,7 @@ const DetailsPanel = () => {
           onClick={() => deleteNode(selectedNode)}
           className="w-full py-3 text-[10px] font-bold text-red-500 bg-red-50 rounded-xl border border-red-100 hover:bg-red-100 transition-colors"
         >
-          🗑️ 删除节点及其关联
+          删除节点及其关联
         </button>
       </div>
     )}
@@ -283,7 +283,7 @@ const DetailsPanel = () => {
           onClick={() => deleteLink(selectedLink)}
           className="w-full py-3 text-[10px] font-bold text-red-500 bg-red-50 rounded-xl border border-red-100 hover:bg-red-100 transition-colors"
         >
-          🗑️ 仅删除此关系
+          仅删除此关系
         </button>
       </div>
     )}

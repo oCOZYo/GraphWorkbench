@@ -70,6 +70,8 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
   const [activeInsurerId, setActiveInsurerId] = useState('')
   const [visibilityMode, setVisibilityMode] = useState('dim')
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  const [isLegendOpen, setIsLegendOpen] = useState(false)
+  const [hiddenNodeTypes, setHiddenNodeTypes] = useState({})
 
   const fileInputRef = useRef(null)
   const neo4jFileInputRef = useRef(null)
@@ -98,6 +100,23 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
       return acc
     }, {})
   }, [nodes])
+
+  const filteredNodes = useMemo(() => {
+    return nodes.filter((node) => !hiddenNodeTypes[node.type])
+  }, [nodes, hiddenNodeTypes])
+
+  const filteredLinks = useMemo(() => {
+    const nodeIdSet = new Set(filteredNodes.map((node) => node.id))
+    const getId = (value) => (typeof value === 'object' ? value.id : value)
+    return links.filter((link) => nodeIdSet.has(getId(link.source)) && nodeIdSet.has(getId(link.target)))
+  }, [links, filteredNodes])
+
+  const toggleNodeTypeVisibility = (typeKey) => {
+    setHiddenNodeTypes((prev) => ({
+      ...prev,
+      [typeKey]: !prev[typeKey],
+    }))
+  }
 
   const createNodeType = () => createNodeTypeConfig({ nodeTypeConfigs, setNodeTypeConfigs })
 
@@ -153,8 +172,8 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
   const simulationRef = useGraphRenderer({
     svgRef,
     containerRef,
-    nodes,
-    links,
+    nodes: filteredNodes,
+    links: filteredLinks,
     selectedNode,
     selectedLink,
     linkSource,
@@ -334,6 +353,12 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
         setVisibilityMode,
         isSidebarCollapsed,
         setIsSidebarCollapsed,
+        isLegendOpen,
+        setIsLegendOpen,
+        hiddenNodeTypes,
+        toggleNodeTypeVisibility,
+        filteredNodes,
+        filteredLinks,
         insurerNodes,
         insurerIds,
         nodeTypeUsage,

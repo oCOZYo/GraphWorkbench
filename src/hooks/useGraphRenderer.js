@@ -29,6 +29,7 @@ const useGraphRenderer = ({
   onBackgroundClick,
 }) => {
   const simulationRef = useRef(null)
+  const zoomTransformRef = useRef(d3.zoomIdentity)
 
   useEffect(() => {
     if (!svgRef.current || !containerRef.current) return
@@ -36,6 +37,7 @@ const useGraphRenderer = ({
     const width = containerRef.current.clientWidth
     const height = containerRef.current.clientHeight
 
+    const previousTransform = d3.zoomTransform(svgRef.current)
     const svg = d3.select(svgRef.current).attr('viewBox', [0, 0, width, height])
     svg.selectAll('*').remove()
     const container = svg.append('g')
@@ -43,8 +45,12 @@ const useGraphRenderer = ({
     const zoom = d3
       .zoom()
       .scaleExtent([0.1, 10])
-      .on('zoom', (e) => container.attr('transform', e.transform))
+      .on('zoom', (e) => {
+        zoomTransformRef.current = e.transform
+        container.attr('transform', e.transform)
+      })
     svg.call(zoom)
+    svg.call(zoom.transform, zoomTransformRef.current || previousTransform || d3.zoomIdentity)
 
     svg.append('defs')
 
