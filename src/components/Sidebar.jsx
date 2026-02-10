@@ -55,7 +55,7 @@ const Sidebar = () => {
           {!isSidebarCollapsed && (
             <div className="text-right">
               <h1 className="text-lg font-black text-slate-800 tracking-tight">异构图建模工具</h1>
-              <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Workbench v3.3.1</p>
+              <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-[0.2em] font-bold">Workbench v3.3.1</p>
             </div>
           )}
         </div>
@@ -68,7 +68,7 @@ const Sidebar = () => {
       >
         <section>
           <h3
-            className={`text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter transition-all ${
+            className={`text-[10px] font-black text-slate-400 mb-4 uppercase tracking-[0.1em] transition-all ${
               isSidebarCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'
             }`}
           >
@@ -80,40 +80,40 @@ const Sidebar = () => {
                 setIsQuickLinkMode(!isQuickLinkMode)
                 setLinkSource(null)
               }}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               } ${
                 isQuickLinkMode ? 'bg-blue-600 text-white shadow-blue-100' : 'bg-white text-slate-600 border border-slate-200'
               }`}
             >
               <span className="text-base">🖱️</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 连线模式: {isQuickLinkMode ? '开启' : '关闭'}
               </span>
             </button>
             <button
               onClick={aggregateNodes}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-indigo-50 text-indigo-600 border border-indigo-100 ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-indigo-50 text-indigo-600 border border-indigo-100 hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               }`}
             >
               <span className="text-base">🔄</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 一键自动布局
               </span>
             </button>
             <button
               onClick={() => setAutoLayoutEnabled(!autoLayoutEnabled)}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm border flex items-center ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm border flex items-center hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               } ${
                 autoLayoutEnabled
-                  ? 'bg-indigo-600 text-white border-indigo-600'
+                  ? 'bg-indigo-600 text-white border-indigo-600 shadow-indigo-100'
                   : 'bg-white text-slate-600 border-slate-200'
               }`}
             >
               <span className="text-base">🧲</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 自动布局: {autoLayoutEnabled ? '开启' : '关闭'}
               </span>
             </button>
@@ -122,7 +122,7 @@ const Sidebar = () => {
 
         <section>
           <h3
-            className={`text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter transition-all ${
+            className={`text-[10px] font-black text-slate-400 mb-4 uppercase tracking-[0.1em] transition-all ${
               isSidebarCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'
             }`}
           >
@@ -131,34 +131,34 @@ const Sidebar = () => {
           <div className="grid gap-2">
             <button
               onClick={() => setShowNodeTypeManager(true)}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-700 text-white ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-800 text-white hover:bg-slate-700 hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               }`}
             >
               <span className="text-base">🗂️</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 实体管理
               </span>
             </button>
             <button
               onClick={() => setShowTypeManager(true)}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-700 text-white ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-800 text-white hover:bg-slate-700 hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               }`}
             >
               <span className="text-base">🔗</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 关系管理
               </span>
             </button>
             <button
               onClick={() => setShowColorPaletteManager(true)}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-700 text-white ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-800 text-white hover:bg-slate-700 hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               }`}
             >
               <span className="text-base">🎨</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 色卡管理
               </span>
             </button>
@@ -167,7 +167,7 @@ const Sidebar = () => {
 
         <section>
           <h3
-            className={`text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter transition-all ${
+            className={`text-[10px] font-black text-slate-400 mb-4 uppercase tracking-[0.1em] transition-all ${
               isSidebarCollapsed ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'
             }`}
           >
@@ -176,45 +176,45 @@ const Sidebar = () => {
           <div className="grid gap-2">
             <button
               onClick={exportData}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-emerald-600 text-white ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-emerald-600 text-white hover:bg-emerald-500 hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               }`}
             >
               <span className="text-base">💾</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 导出数据包
               </span>
             </button>
             <button
               onClick={exportNeo4j}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-emerald-50 text-emerald-700 border border-emerald-100 ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-emerald-50 text-emerald-700 border border-emerald-100 hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               }`}
             >
               <span className="text-base">🧱</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 导出 Neo4j JSON
               </span>
             </button>
             <button
               onClick={() => fileInputRef.current.click()}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-900 text-white ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-slate-900 text-white hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               }`}
             >
               <span className="text-base">📂</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 导入数据包
               </span>
             </button>
             <button
               onClick={() => neo4jFileInputRef.current.click()}
-              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-white text-slate-700 border border-slate-200 ${
+              className={`w-full rounded-xl font-bold transition-all shadow-sm flex items-center bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 hover:scale-[1.02] active:scale-[0.98] ${
                 isSidebarCollapsed ? 'h-9 justify-center gap-0' : 'py-3 px-3 gap-3'
               }`}
             >
               <span className="text-base">📦</span>
-              <span className={`text-xs transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
+              <span className={`text-[11px] transition-all ${isSidebarCollapsed ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}>
                 导入 Neo4j JSON
               </span>
             </button>
@@ -232,7 +232,7 @@ const Sidebar = () => {
         {!isSidebarCollapsed && (
           <>
             <details className="group">
-              <summary className="list-none cursor-pointer text-[10px] font-black text-slate-400 uppercase tracking-tighter flex items-center justify-between">
+              <summary className="list-none cursor-pointer text-[10px] font-black text-slate-400 uppercase tracking-[0.1em] flex items-center justify-between">
                 <span>单保司视角</span>
                 <span className="text-[11px] text-slate-300 group-open:rotate-180 transition">▾</span>
               </summary>
@@ -243,7 +243,7 @@ const Sidebar = () => {
                     setSingleInsurerMode(next)
                     if (next && !activeInsurerId && insurerIds.length > 0) setActiveInsurerId(insurerIds[0])
                   }}
-                  className={`w-full py-3 rounded-xl text-xs font-bold transition-all shadow-sm ${
+                  className={`w-full py-3 rounded-xl text-[11px] font-bold transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98] ${
                     singleInsurerMode ? 'bg-emerald-600 text-white shadow-emerald-100' : 'bg-white text-slate-600 border border-slate-200'
                   }`}
                 >
@@ -276,24 +276,24 @@ const Sidebar = () => {
             </details>
 
             <section>
-              <h3 className="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter">录入实体</h3>
-              <div className="space-y-3 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
+              <h3 className="text-[10px] font-black text-slate-400 mb-4 uppercase tracking-[0.1em]">录入实体</h3>
+              <div className="space-y-3 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
                 <input
                   ref={labelInputRef}
-                  className="w-full text-xs p-2.5 rounded-lg border focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full text-[11px] p-2.5 rounded-lg border border-slate-100 bg-slate-50/30 focus:bg-white focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all placeholder-slate-300"
                   placeholder="显示名称"
                   value={newNode.label}
                   onBlur={handleLabelBlur}
                   onChange={(e) => setNewNode({ ...newNode, label: e.target.value })}
                 />
                 <input
-                  className="w-full text-xs p-2.5 rounded-lg border bg-white"
-                  placeholder="ID"
+                  className="w-full text-[11px] p-2.5 rounded-lg border border-slate-100 bg-slate-50/30 focus:bg-white focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 outline-none transition-all placeholder-slate-300"
+                  placeholder="ID (可选)"
                   value={newNode.id}
                   onChange={(e) => setNewNode({ ...newNode, id: e.target.value })}
                 />
                 <select
-                  className="w-full text-xs p-2.5 rounded-lg border bg-white"
+                  className="w-full text-[11px] p-2.5 rounded-lg border border-slate-100 bg-slate-50/30 focus:bg-white focus:border-slate-200 outline-none transition-all appearance-none cursor-pointer"
                   value={newNode.type}
                   onChange={(e) => handleNewNodeTypeChange(e.target.value)}
                 >
@@ -305,7 +305,7 @@ const Sidebar = () => {
                 </select>
                 <button
                   onClick={addNode}
-                  className="w-full bg-slate-900 text-white text-xs font-bold py-2.5 rounded-lg active:scale-95 transition-all"
+                  className="w-full bg-slate-900 text-white text-[11px] font-bold py-2.5 rounded-lg hover:bg-slate-800 active:scale-95 transition-all shadow-sm"
                 >
                   添加节点
                 </button>
