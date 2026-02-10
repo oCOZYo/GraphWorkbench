@@ -32,6 +32,7 @@ const Sidebar = () => {
     exportNeo4j,
     fileInputRef,
     neo4jFileInputRef,
+    labelInputRef,
     handleImport,
     handleNeo4jImport,
   } = useGraphContext()
@@ -278,6 +279,7 @@ const Sidebar = () => {
               <h3 className="text-[10px] font-black text-slate-400 mb-3 uppercase tracking-tighter">录入实体</h3>
               <div className="space-y-3 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
                 <input
+                  ref={labelInputRef}
                   className="w-full text-xs p-2.5 rounded-lg border focus:ring-2 focus:ring-blue-500 outline-none"
                   placeholder="显示名称"
                   value={newNode.label}

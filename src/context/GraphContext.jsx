@@ -75,6 +75,7 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
 
   const fileInputRef = useRef(null)
   const neo4jFileInputRef = useRef(null)
+  const labelInputRef = useRef(null)
 
   const { insurerNodes, insurerIds, isNodeVisibleForInsurer, isLinkVisibleForInsurer } = useVisibility({
     nodes,
@@ -232,6 +233,7 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
       setNewNode,
       initialNodeTypes: INITIAL_NODE_TYPES,
     })
+    labelInputRef.current?.focus()
   }
 
   const handleNewNodeTypeChange = (type) => {
@@ -383,6 +385,7 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
         exportNeo4j,
         fileInputRef,
         neo4jFileInputRef,
+        labelInputRef,
         getNodeColor,
         getNodeIcon,
         getLinkStrokeColor,
