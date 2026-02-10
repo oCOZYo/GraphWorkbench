@@ -72,6 +72,7 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
   const [isLegendOpen, setIsLegendOpen] = useState(false)
   const [hiddenNodeTypes, setHiddenNodeTypes] = useState({})
+  const [hiddenLinkTypes, setHiddenLinkTypes] = useState({})
 
   const fileInputRef = useRef(null)
   const neo4jFileInputRef = useRef(null)
@@ -102,6 +103,13 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
     }, {})
   }, [nodes])
 
+  const linkTypeUsage = useMemo(() => {
+    return links.reduce((acc, link) => {
+      acc[link.type] = (acc[link.type] || 0) + 1
+      return acc
+    }, {})
+  }, [links])
+
   const filteredNodes = useMemo(() => {
     return nodes.filter((node) => !hiddenNodeTypes[node.type])
   }, [nodes, hiddenNodeTypes])
@@ -109,13 +117,22 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
   const filteredLinks = useMemo(() => {
     const nodeIdSet = new Set(filteredNodes.map((node) => node.id))
     const getId = (value) => (typeof value === 'object' ? value.id : value)
-    return links.filter((link) => nodeIdSet.has(getId(link.source)) && nodeIdSet.has(getId(link.target)))
-  }, [links, filteredNodes])
+    return links.filter(
+      (link) => nodeIdSet.has(getId(link.source)) && nodeIdSet.has(getId(link.target)) && !hiddenLinkTypes[link.type],
+    )
+  }, [links, filteredNodes, hiddenLinkTypes])
 
   const toggleNodeTypeVisibility = (typeKey) => {
     setHiddenNodeTypes((prev) => ({
       ...prev,
       [typeKey]: !prev[typeKey],
+    }))
+  }
+
+  const toggleLinkTypeVisibility = (typeName) => {
+    setHiddenLinkTypes((prev) => ({
+      ...prev,
+      [typeName]: !prev[typeName],
     }))
   }
 
@@ -359,11 +376,14 @@ export const GraphProvider = ({ children, svgRef, containerRef }) => {
         setIsLegendOpen,
         hiddenNodeTypes,
         toggleNodeTypeVisibility,
+        hiddenLinkTypes,
+        toggleLinkTypeVisibility,
         filteredNodes,
         filteredLinks,
         insurerNodes,
         insurerIds,
         nodeTypeUsage,
+        linkTypeUsage,
         createNodeType,
         updateNodeType,
         deleteNodeType,

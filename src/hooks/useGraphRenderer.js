@@ -83,17 +83,20 @@ const useGraphRenderer = ({
 
     const simulation = d3
       .forceSimulation(visibleNodes)
+      .alphaDecay(0.04)
+      .velocityDecay(0.3)
       .force(
         'link',
         d3
           .forceLink(linkData)
           .id((d) => d.id)
-          .distance(120)
-          .strength(shouldAutoLayout ? 1 : 0),
+          .distance(180)
+          .strength(shouldAutoLayout ? 0.4 : 0),
       )
-      .force('charge', d3.forceManyBody().strength(shouldAutoLayout ? -120 : 0))
-      .force('center', shouldAutoLayout ? d3.forceCenter(width / 2, height / 2) : null)
-      .force('collision', shouldAutoLayout ? d3.forceCollide().radius(20) : null)
+      .force('charge', d3.forceManyBody().strength(shouldAutoLayout ? -450 : 0))
+      .force('x', shouldAutoLayout ? d3.forceX(width / 2).strength(0.02) : null)
+      .force('y', shouldAutoLayout ? d3.forceY(height / 2).strength(0.02) : null)
+      .force('collision', shouldAutoLayout ? d3.forceCollide().radius(55) : null)
 
     simulationRef.current = simulation
 
@@ -220,7 +223,7 @@ const useGraphRenderer = ({
         return `M${sx},${sy} Q${qx},${qy} ${tx},${ty}`
       }
 
-      if (simulation.alpha() < 0.02) {
+      if (simulation.alpha() < 0.005) {
         simulation.stop()
         if (!autoLayoutEnabled && layoutOnceToken) {
           setLayoutOnceToken(0)

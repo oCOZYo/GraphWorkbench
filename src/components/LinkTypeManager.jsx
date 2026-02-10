@@ -10,6 +10,8 @@ const LinkTypeManager = () => {
     addLinkType,
     deleteLinkType,
     renameLinkType,
+    hiddenLinkTypes,
+    toggleLinkTypeVisibility,
     commonColors,
   } = useGraphContext()
   const onClose = () => setShowTypeManager(false)
@@ -56,13 +58,26 @@ const LinkTypeManager = () => {
                     />
                     <p className="text-xs text-gray-400">用于图谱连线标签与样式配置</p>
                   </div>
-                  <button
-                    onClick={() => deleteLinkType(index)}
-                    className="w-8 h-8 flex items-center justify-center rounded hover:bg-gray-100 transition-colors text-gray-400 hover:text-red-500"
-                    title="删除类型"
-                  >
-                    ❌
-                  </button>
+                  <div className="flex gap-1">
+                    <button
+                      onClick={() => toggleLinkTypeVisibility(type.name)}
+                      className={`w-8 h-8 flex items-center justify-center rounded transition-colors ${
+                        hiddenLinkTypes[type.name]
+                          ? 'bg-slate-100 text-slate-400'
+                          : 'hover:bg-blue-50 text-blue-500'
+                      }`}
+                      title={hiddenLinkTypes[type.name] ? '显示所有此类边' : '隐藏所有此类边（不参与排布）'}
+                    >
+                      {hiddenLinkTypes[type.name] ? '👁️‍🗨️' : '👁️'}
+                    </button>
+                    <button
+                      onClick={() => deleteLinkType(index)}
+                      className="w-8 h-8 flex items-center justify-center rounded hover:bg-gray-100 transition-colors text-gray-400 hover:text-red-500"
+                      title="删除类型"
+                    >
+                      ❌
+                    </button>
+                  </div>
                 </div>
 
                 <div className="space-y-2">

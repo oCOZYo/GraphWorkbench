@@ -1,62 +1,117 @@
-# 异构图建模工作站（Vite + React）
+# 异构图建模工作站 (GraphWorkbench)
 
-基于 Vite + React + D3 的图谱建模工作站，提供实体/关系编辑、类型预设管理、单保司视角、导入导出等能力，界面使用 Tailwind CSS。
+基于 **Vite + React + D3** 构建的专业级异构图谱建模工作站。专为保险团伙欺诈分析、关联网络挖掘等场景设计，提供灵活的实体/关系编辑、类型预设管理、保司权限视角、以及标准化的数据导入导出能力。
 
-## 快速开始
+## 🚀 快速开始
 
-- 安装依赖：pnpm install
-- 启动开发：pnpm dev
-- 生产构建：pnpm build
-- 预览产物：pnpm preview
+- **安装依赖**：`pnpm install`
+- **启动开发服务器**：`pnpm dev`
+- **生产构建**：`pnpm build`
+- **预览产物**：`pnpm preview`
 
-## 功能概览
+## ✨ 功能概览
 
-- 节点新增、删除与拖拽布局
-- 关系创建、编辑与删除
-- 实体类型配置（名称/颜色/图标）
-- 关系类型配置（颜色/线型/线宽）
-- 单保司视角与可见性管理
-- 数据导入导出（JSON）
-- 单节点/单边个性化覆盖（图标、颜色、线型、线宽）
+- **画布操作**：支持节点的新增、删除、拖拽布局，实时计算力导向布局。
+- **关系管理**：直观创建、编辑与删除实体间的关联关系。
+- **类型配置管理**：
+  - **实体类型 (Node Types)**：自定义名称、颜色、图标 (Emoji 字符)、自动识别关键字、ID 前缀。
+  - **关系类型 (Link Types)**：自定义颜色、线型 (实线/虚线)、线宽。
+- **权限管理与多保司视角**：
+  - 核心逻辑基于 `INSURER` 类型的节点作为视角主体。
+  - 节点具备 `visibleTo` 属性，仅当切换到对应保司或“显示全部”时可见。
+- **样式覆盖 (Overrides)**：支持在单节点/单连线上直接设置 `color`、`icon` 或 `style` 来覆盖所属类型的默认配置。
+- **数据兼容**：标准 JSON 导入导出，内置 Neo4j 格式映射器。
 
-## 架构概览
+---
 
-- UI 组件化：侧栏、详情面板、类型配置弹窗
-- D3 渲染逻辑抽成 Hook，UI 与渲染分离
-- 全局状态收敛到 Context，避免层层传参
-- 预设与导入导出逻辑下沉到独立模块
+## 📊 数据交换协议详细说明 (JSON Schema)
 
-## 项目结构
+为确保数据能被顺利导入并在 UI 中正确展示，请遵循以下核心格式：
 
-- 入口：[src/main.jsx](src/main.jsx)
-- 页面布局：[src/App.jsx](src/App.jsx)
-- D3 渲染 Hook：[src/hooks/useGraphRenderer.js](src/hooks/useGraphRenderer.js)
-- 可见性策略 Hook：[src/hooks/useVisibility.js](src/hooks/useVisibility.js)
-- 可见性选择器：[src/selectors/visibilitySelectors.js](src/selectors/visibilitySelectors.js)
-- 全局状态：[src/context/GraphContext.jsx](src/context/GraphContext.jsx)
-- 预设配置：[src/config/graphPresets.js](src/config/graphPresets.js)
-- 数据工具：[src/utils/graphData.js](src/utils/graphData.js)
-- 图编辑动作：[src/actions/graphActions.js](src/actions/graphActions.js)
-- 类型配置动作：[src/actions/typeActions.js](src/actions/typeActions.js)
-- 组件目录：[src/components/](src/components/)
-- 全局样式：[src/index.css](src/index.css)
+### 1. 节点对象 (Nodes)
+```json
+{
+  "id": "UNIQUE_ID",
+  "label": "显示名称",
+  "type": "TYPE_KEY",            // 需对应 nodeTypes 中的 Key
+  "icon": "👤",                 // 可选，覆盖类型的默认 Emoji 图标
+  "color": "#HEX_COLOR",        // 可选，覆盖类型的默认颜色
+  "visibleTo": ["BS_PA", ...]   // 必填，包含可见该节点的 INSURER 节点 ID 列表
+}
+```
 
-## 数据格式
+### 2. 连线对象 (Links)
+```json
+{
+  "id": "L123",
+  "source": "START_NODE_ID",
+  "target": "END_NODE_ID",
+  "type": "REL_NAME",           // 需对应 linkTypes 中的 name
+  "style": "solid" | "dashed",  // 线型：实线或虚线
+  "weight": 1.5,                // 线宽：推荐 1.0 - 5.0
+  "color": "#HEX_COLOR"         // 可选，覆盖默认颜色
+}
+```
 
-导入导出为 JSON，包含 nodes、links、linkTypes、nodeTypes：
+### 3. 类型配置 (Type Configs)
+- **nodeTypes**: `Record<string, { label, color, icon, keywords: string[], prefix: string }>`
+- **linkTypes**: `Array<{ name, color, style, weight }>`
 
-- nodes: [{ id, label, type, icon?, color?, visibleTo? }]
-- links: [{ id, source, target, type, color?, style?, weight? }]
-- linkTypes: [{ name, color, style, weight }]
-- nodeTypes: { [typeKey]: { label, color, icon, keywords?, prefix? } }
-- commonColors: ["#RRGGBB", ...]
+---
 
-## Neo4j 导入/导出
+## 🤖 LLM 数据生成助手 (Expert Prompt Template)
 
-- 导出文件为 JSON，结构：
-	- nodes: [{ id, labels: [type], properties: { label, type, icon?, color?, visibleTo? } }]
-	- relationships: [{ id, type, start, end, properties: { color?, style?, weight? } }]
-- 导入时会自动补齐缺失的节点类型/关系类型配置（使用默认样式）。
+复制以下提示词给 LLM（如 Claude 3.5 Sonnet / GPT-4o），即可生成高质量的业务测试数据。
 
+### 提示词模板
 
+```markdown
+# Role
+你是一个保险欺诈网络分析专家。你需要生成一个符合 GraphWorkbench 规范的异构图谱 JSON 数据包。
 
+# Task
+基于提供的[业务场景描述]，构建一个复杂的关联网络模型：
+[此处粘贴业务场景：例如“一个跨省的团伙，利用 5 个投保人在 3 家保司间通过虚假伤残证明骗保...”]
+
+# Output Rules (CRITICAL)
+1. **基础骨架**：输出必须是一个纯净的 JSON 对象，包含 nodes, links, nodeTypes, linkTypes, commonColors。
+2. **节点配置 (nodeTypes)**：
+   - 必须包含：AGENT (代理人), MEMBER (投保人), POLICY (保单), INVOICE (发票), INSURER (保险公司), HOSPITAL (医疗机构)。
+   - **icon 字段必须使用具体的 Emoji 字符** (例如: 👤, 👨, 📄, 🧾, 🏢, 🏥)。
+   - `prefix` 必须是短大写字母 (如 DL, TB)，`keywords` 包含 3-5 个业务关键词。
+3. **节点定义 (nodes)**：
+   - 必须包含至少两个 "type": "INSURER" 的节点（作为权限主体，ID 建议以 BS 开头）。
+   - 每个普通节点的 `visibleTo` 数组必须根据业务逻辑包含上述保司 ID。如果全行业可见，则包含所有保司 ID；如果是保司内部私有，则只包含一个。
+   - 禁止生成 x, y, fx, fy 坐标字段。
+4. **关系定义 (links & linkTypes)**：
+   - linkTypes 需定义：代理销售、承保、就诊、提交凭证、异常关联、资金流向等。
+   - `style` 仅限 "solid" 或 "dashed"。
+   - 欺诈嫌疑的高危关联请将 `weight` 设置为 3.0 以上，并使用红色系 `color` 覆盖。
+5. **配色方案**：使用高质量的 HEX 颜色（如 #EF4444, #3B82F6 等）。
+
+# 示例参考结构
+{
+  "nodeTypes": {
+    "AGENT": { "label": "代理人", "color": "#ef4444", "icon": "👤", "prefix": "DL", "keywords": ["代理", "经纪"] }
+  },
+  "linkTypes": [
+    { "name": "提交凭证", "color": "#f59e0b", "style": "solid", "weight": 1.5 }
+  ],
+  "nodes": [
+    { "id": "BS_PA", "label": "平安保险", "type": "INSURER", "visibleTo": ["BS_PA"] },
+    { "id": "DL_01", "label": "代理人 A", "type": "AGENT", "visibleTo": ["BS_PA", "BS_ZA"] }
+  ],
+  "links": [
+    { "id": "L1", "source": "DL_01", "target": "BD_01", "type": "代理销售", "style": "solid", "weight": 1.5 }
+  ],
+  "commonColors": ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#94a3b8"]
+}
+```
+
+---
+
+## 🛠️ 数据修正与 Neo4j 支持
+
+- **ID 自动补全**：若导入的连线缺失 ID，系统会自动生成唯一标识。
+- **类型自动推断**：导入未定义类型的节点时，系统会自动在配置列表中创建默认样式。
+- **Neo4j 映射**：支持导入标准的 Neo4j JSON 导出格式（映射 `labels` 到 `type`，`properties` 到节点属性）。
