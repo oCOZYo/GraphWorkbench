@@ -325,7 +325,42 @@ const Sidebar = () => {
                     className="h-8"
                   />
                 </a>
-                <p>欢迎提交 Issue / PR 或分享你的业务图谱实践。</p> 
+                <p>欢迎提交 Issue / PR 或分享你的业务图谱实践。</p>
+                <div className="flex items-center gap-2">
+                  <div className="font-semibold text-slate-600">Powered by</div>
+                  <a
+                    href="https://github.com/facebook/react"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-500 hover:text-slate-700"
+                  >
+                    React
+                  </a>
+                  <a
+                    href="https://github.com/vitejs/vite"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-500 hover:text-slate-700"
+                  >
+                    Vite
+                  </a>
+                  <a
+                    href="https://github.com/d3/d3"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-500 hover:text-slate-700"
+                  >
+                    D3.js
+                  </a>
+                  <a
+                    href="https://github.com/tailwindlabs/tailwindcss"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-slate-500 hover:text-slate-700"
+                  >
+                    Tailwind CSS
+                  </a>
+                </div>
               </div>
             </section>
           </>
