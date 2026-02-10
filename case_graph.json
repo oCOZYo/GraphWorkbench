@@ -1,0 +1,560 @@
+{
+  "nodes": [
+    {
+      "id": "LMM",
+      "label": "李某某",
+      "type": "AGENT",
+      "index": 0,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "TB01",
+      "label": "投保人01",
+      "type": "MEMBER",
+      "index": 1,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "BSZ",
+      "label": "保司-Z",
+      "type": "INSURER",
+      "index": 2,
+      "visibleTo": [
+        "BSZ",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "TKYY",
+      "label": "TK第二人民医院",
+      "type": "HOSPITAL",
+      "index": 3,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "TKYY_7",
+      "label": "TK人民医院",
+      "type": "HOSPITAL",
+      "index": 4,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "TKYY_6",
+      "label": "TK中医院",
+      "type": "HOSPITAL",
+      "index": 5,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "DL-F",
+      "label": "代理人：冯某某",
+      "type": "AGENT",
+      "index": 6,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "DL-C",
+      "label": "代理人：陈某某",
+      "type": "AGENT",
+      "index": 7,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "TB02",
+      "label": "投保人02",
+      "type": "MEMBER",
+      "index": 8,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "BS-PA",
+      "label": "保司PA",
+      "type": "INSURER",
+      "index": 9,
+      "visibleTo": [
+        "BS-PA",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "BS",
+      "label": "保司ZA",
+      "type": "INSURER",
+      "index": 10,
+      "visibleTo": [
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "FP01",
+      "label": "发票01",
+      "type": "INVOICE",
+      "index": 11,
+      "visibleTo": [
+        "BSZ",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "FP02",
+      "label": "发票02",
+      "type": "INVOICE",
+      "index": 12,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "BD01",
+      "label": "保单01-PA",
+      "type": "POLICY",
+      "index": 13,
+      "visibleTo": [
+        "BS-PA",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "BD02",
+      "label": "保单02-ZA",
+      "type": "POLICY",
+      "index": 14,
+      "visibleTo": [
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "BD03",
+      "label": "保单03-z",
+      "type": "POLICY",
+      "index": 15,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "FP03",
+      "label": "发票03",
+      "type": "INVOICE",
+      "index": 16,
+      "visibleTo": [
+        "BSZ",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "FP04",
+      "label": "发票04",
+      "type": "INVOICE",
+      "index": 17,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "BD04",
+      "label": "保单04-z",
+      "type": "POLICY",
+      "index": 18,
+      "visibleTo": [
+        "BSZ",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "TB03",
+      "label": "投保人03",
+      "type": "MEMBER",
+      "index": 19,
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ]
+    },
+    {
+      "id": "BS_TPY",
+      "label": "保司TPY",
+      "type": "INSURER",
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ],
+      "index": 20
+    },
+    {
+      "id": "BD05",
+      "label": "保单05-TPY",
+      "type": "POLICY",
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ],
+      "index": 21
+    },
+    {
+      "id": "TB04",
+      "label": "投保人04",
+      "type": "MEMBER",
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ],
+      "index": 22
+    },
+    {
+      "id": "TB05",
+      "label": "投保人05",
+      "type": "MEMBER",
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ],
+      "index": 23
+    },
+    {
+      "id": "TB06",
+      "label": "投保人06",
+      "type": "MEMBER",
+      "visibleTo": [
+        "BSZ",
+        "BS-PA",
+        "BS",
+        "BS_TPY"
+      ],
+      "index": 24
+    }
+  ],
+  "links": [
+    {
+      "source": "LMM",
+      "target": "TB02",
+      "type": "垫付医疗费",
+      "id": "Lb5bvimd1e"
+    },
+    {
+      "source": "TKYY_7",
+      "target": "FP01",
+      "type": "治疗",
+      "id": "Lq4w9shq6h"
+    },
+    {
+      "source": "FP02",
+      "target": "TKYY_7",
+      "type": "治疗",
+      "id": "Lyrrgaojc5"
+    },
+    {
+      "source": "FP01",
+      "target": "BD01",
+      "type": "理赔",
+      "id": "L86dv3njm1"
+    },
+    {
+      "source": "FP01",
+      "target": "BD02",
+      "type": "理赔",
+      "id": "Ltptau8xev"
+    },
+    {
+      "source": "TB01",
+      "target": "BD02",
+      "type": "投保",
+      "id": "Lkexmnlcng"
+    },
+    {
+      "source": "BS",
+      "target": "BD02",
+      "type": "承保",
+      "id": "L19r80xdl3"
+    },
+    {
+      "source": "BD01",
+      "target": "BS-PA",
+      "type": "承保",
+      "id": "Lxaevnxyua"
+    },
+    {
+      "source": "BD01",
+      "target": "TB01",
+      "type": "投保",
+      "id": "Lrbeyyh40w"
+    },
+    {
+      "source": "FP02",
+      "target": "BD02",
+      "type": "理赔",
+      "id": "Ljw0ps6odg"
+    },
+    {
+      "source": "FP02",
+      "target": "BD01",
+      "type": "理赔",
+      "id": "L16jmivsxg"
+    },
+    {
+      "source": "TB01",
+      "target": "LMM",
+      "type": "垫付医疗费",
+      "id": "Lg333v109e"
+    },
+    {
+      "source": "BD03",
+      "target": "BSZ",
+      "type": "承保",
+      "id": "L6p7x1gb3v"
+    },
+    {
+      "source": "TKYY",
+      "target": "FP03",
+      "type": "治疗",
+      "id": "Leriasbtoy"
+    },
+    {
+      "source": "FP03",
+      "target": "BD03",
+      "type": "理赔",
+      "id": "L84ub8s9u3"
+    },
+    {
+      "source": "BD03",
+      "target": "FP04",
+      "type": "理赔",
+      "id": "Lfk74lwfaw"
+    },
+    {
+      "source": "FP04",
+      "target": "TKYY",
+      "type": "治疗",
+      "id": "Li3eochhlu"
+    },
+    {
+      "source": "TB02",
+      "target": "BD03",
+      "type": "投保",
+      "id": "L1iv2egs75"
+    },
+    {
+      "source": "TB01",
+      "target": "BD04",
+      "type": "投保",
+      "id": "L563nhrly0"
+    },
+    {
+      "source": "BD04",
+      "target": "FP01",
+      "type": "理赔",
+      "id": "Lhdfqhqayc"
+    },
+    {
+      "source": "BD04",
+      "target": "FP02",
+      "type": "理赔",
+      "id": "Lcvmq3ukwb"
+    },
+    {
+      "source": "BSZ",
+      "target": "BD04",
+      "type": "承保",
+      "id": "L4unhqzftd"
+    },
+    {
+      "source": "LMM",
+      "target": "TB02",
+      "type": "代理销售",
+      "id": "L17706199787050dhto"
+    },
+    {
+      "source": "TB01",
+      "target": "LMM",
+      "type": "代理销售",
+      "id": "L1770619995962p8g1u"
+    },
+    {
+      "source": "LMM",
+      "target": "TB03",
+      "type": "代理销售",
+      "id": "L1770620047415um5z4"
+    },
+    {
+      "source": "LMM",
+      "target": "TB03",
+      "type": "垫付医疗费",
+      "id": "L1770620060031ji6hr"
+    },
+    {
+      "source": "BD05",
+      "target": "LMM",
+      "type": "投保",
+      "id": "L1770623835289kmsru"
+    },
+    {
+      "source": "BS_TPY",
+      "target": "BD05",
+      "type": "承保",
+      "id": "L1770623840605abz0f"
+    }
+  ],
+  "linkTypes": [
+    {
+      "name": "代理销售",
+      "color": "#3b82f6"
+    },
+    {
+      "name": "投保",
+      "color": "#94a3b8"
+    },
+    {
+      "name": "提交凭证",
+      "color": "#f59e0b"
+    },
+    {
+      "name": "承保",
+      "color": "#8b5cf6"
+    },
+    {
+      "name": "垫付医疗费",
+      "color": "#ef4444"
+    },
+    {
+      "name": "治疗",
+      "color": "#10b981"
+    },
+    {
+      "name": "理赔",
+      "color": "#40b9ed"
+    }
+  ],
+  "nodeTypes": {
+    "AGENT": {
+      "label": "代理人",
+      "color": "#ef4444",
+      "icon": "👤",
+      "keywords": [
+        "代理",
+        "经纪",
+        "某某",
+        "首脑"
+      ],
+      "prefix": "DL"
+    },
+    "MEMBER": {
+      "label": "投保人",
+      "color": "#f97316",
+      "icon": "👨",
+      "keywords": [
+        "投保",
+        "被保险",
+        "成员",
+        "客户"
+      ],
+      "prefix": "TB"
+    },
+    "POLICY": {
+      "label": "保单",
+      "color": "#3b82f6",
+      "icon": "📄",
+      "keywords": [
+        "保单",
+        "合同",
+        "契约"
+      ],
+      "prefix": "BD"
+    },
+    "INVOICE": {
+      "label": "发票",
+      "color": "#f59e0b",
+      "icon": "🧾",
+      "keywords": [
+        "发票",
+        "凭证",
+        "单据",
+        "收据"
+      ],
+      "prefix": "FP"
+    },
+    "INSURER": {
+      "label": "保险公司",
+      "color": "#8b5cf6",
+      "icon": "🏢",
+      "keywords": [
+        "保司",
+        "保险公司",
+        "分公司"
+      ],
+      "prefix": "BS"
+    },
+    "HOSPITAL": {
+      "label": "医疗机构",
+      "color": "#10b981",
+      "icon": "🏥",
+      "keywords": [
+        "医院",
+        "诊疗",
+        "门诊",
+        "卫生院"
+      ],
+      "prefix": "YY"
+    }
+  }
+}
